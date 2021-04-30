@@ -13,6 +13,7 @@ void showCountryListBottomSheet({
   bool showPhoneCode = false,
   CountryListThemeData? countryListTheme,
   String titleSearch = "",
+  String hintSearch = "",
 }) {
   showModalBottomSheet(
     context: context,
@@ -26,6 +27,7 @@ void showCountryListBottomSheet({
       showPhoneCode,
       countryListTheme,
         titleSearch,
+        hintSearch
     ),
   ).whenComplete(() {
     if (onClosed != null) onClosed();
@@ -39,7 +41,8 @@ Widget _builder(
   List<String>? countryFilter,
   bool showPhoneCode,
   CountryListThemeData? countryListTheme,
-    String titleSearch
+    String titleSearch,
+    String hintSearch ,
 ) {
   final statusBarHeight = MediaQuery.of(context).padding.top;
 
@@ -74,6 +77,7 @@ Widget _builder(
             countryFilter: countryFilter,
             showPhoneCode: showPhoneCode,
             countryListTheme: countryListTheme,
+              hintSearch: hintSearch
           ),
         )
       ],

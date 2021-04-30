@@ -29,7 +29,7 @@ class CountryListView extends StatefulWidget {
   /// country list bottom sheet.
   final CountryListThemeData? countryListTheme;
 
-  final String? hintTextSearch;
+  final String? hintSearch;
 
   const CountryListView({
     Key? key,
@@ -38,7 +38,8 @@ class CountryListView extends StatefulWidget {
     this.countryFilter,
     this.showPhoneCode = false,
     this.countryListTheme,
-    this.hintTextSearch,
+    this.hintSearch,
+
   })  : assert(exclude == null || countryFilter == null,
             'Cannot provide both exclude and countryFilter'),
         super(key: key);
@@ -80,7 +81,7 @@ class _CountryListViewState extends State<CountryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final String searchLabel = widget.hintTextSearch ??
+    final String searchLabel = widget.hintSearch ??
         CountryLocalizations.of(context)?.countryName(countryCode: 'search') ??
             'Search';
 
