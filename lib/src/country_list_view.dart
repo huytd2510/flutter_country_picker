@@ -93,7 +93,6 @@ class _CountryListViewState extends State<CountryListView> {
             controller: _searchController,
             decoration: InputDecoration(
               hintText: searchLabel,
-              prefixIcon: const Icon(Icons.search),
               border: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: const Color(0xFF8C98A8).withOpacity(0.2),
