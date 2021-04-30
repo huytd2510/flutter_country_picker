@@ -38,6 +38,7 @@ void showCountryPicker({
   List<String>? countryFilter,
   bool showPhoneCode = false,
   CountryListThemeData? countryListTheme,
+  String titleSearch = "",
 }) {
   assert(exclude == null || countryFilter == null,
       'Cannot provide both exclude and countryFilter');
@@ -49,5 +50,6 @@ void showCountryPicker({
     countryFilter: countryFilter,
     showPhoneCode: showPhoneCode,
     countryListTheme: countryListTheme,
+      titleSearch: titleSearch
   );
 }

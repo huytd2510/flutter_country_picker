@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screen_scaling/flutter_screen_scaling.dart';
 
 import 'country.dart';
 import 'res/country_codes.dart';
@@ -28,6 +29,8 @@ class CountryListView extends StatefulWidget {
   /// country list bottom sheet.
   final CountryListThemeData? countryListTheme;
 
+  final String? hintTextSearch;
+
   const CountryListView({
     Key? key,
     required this.onSelect,
@@ -35,6 +38,7 @@ class CountryListView extends StatefulWidget {
     this.countryFilter,
     this.showPhoneCode = false,
     this.countryListTheme,
+    this.hintTextSearch,
   })  : assert(exclude == null || countryFilter == null,
             'Cannot provide both exclude and countryFilter'),
         super(key: key);
@@ -76,22 +80,20 @@ class _CountryListViewState extends State<CountryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final String searchLabel =
+    final String searchLabel = widget.hintTextSearch ??
         CountryLocalizations.of(context)?.countryName(countryCode: 'search') ??
             'Search';
 
     return Column(
       children: <Widget>[
-        const SizedBox(height: 12),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 14),
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              labelText: searchLabel,
               hintText: searchLabel,
               prefixIcon: const Icon(Icons.search),
-              border: OutlineInputBorder(
+              border: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: const Color(0xFF8C98A8).withOpacity(0.2),
                 ),
@@ -127,38 +129,40 @@ class _CountryListViewState extends State<CountryListView> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
           child: Row(
-            children: <Widget>[
+            children: [
               const SizedBox(width: 20),
               Text(
                 Utils.countryCodeToEmoji(country.countryCode),
                 style: TextStyle(
-                  fontSize: widget.countryListTheme?.flagSize ?? 25,
+                  fontSize: ScreenScale.convertFontSize(30),
                 ),
               ),
-              if (widget.showPhoneCode) ...[
-                const SizedBox(width: 15),
-                SizedBox(
-                  width: 45,
-                  child: Text(
-                    '+${country.phoneCode}',
-                    style: _textStyle,
-                  ),
-                ),
-                const SizedBox(width: 5),
-              ] else
-                const SizedBox(width: 15),
-              Expanded(
-                child: Text(
-                  CountryLocalizations.of(context)
-                          ?.countryName(countryCode: country.countryCode) ??
-                      country.name,
-                  style: _textStyle,
-                ),
-              )
-            ],
+              const SizedBox(width: 20),
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                       Text(
+                              CountryLocalizations.of(context)
+                              ?.countryName(countryCode: country.countryCode) ??
+                              country.name,
+                      style: TextStyle(
+                          fontSize: ScreenScale.convertFontSize(14),
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xff7F88A3)),
+
+                     ),
+                       Text(
+                         '+${country.phoneCode}',
+                         style: TextStyle(
+                             fontWeight: FontWeight.w700,
+                             color: Color(0xff4B5574)),
+                       )
+                      ]
+                  )
+                ]
+              ),
           ),
         ),
-      ),
     );
   }
 
