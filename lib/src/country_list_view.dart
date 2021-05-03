@@ -1,6 +1,5 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screen_scaling/flutter_screen_scaling.dart';
 
 import 'country.dart';
 import 'res/country_codes.dart';
@@ -134,7 +133,7 @@ class _CountryListViewState extends State<CountryListView> {
               Text(
                 Utils.countryCodeToEmoji(country.countryCode),
                 style: TextStyle(
-                  fontSize: ScreenScale.convertFontSize(30),
+                  fontSize: 30,
                 ),
               ),
               const SizedBox(width: 20),
@@ -146,7 +145,7 @@ class _CountryListViewState extends State<CountryListView> {
                               ?.countryName(countryCode: country.countryCode) ??
                               country.name,
                       style: TextStyle(
-                          fontSize: ScreenScale.convertFontSize(14),
+                          fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: Color(0xff7F88A3)),
 

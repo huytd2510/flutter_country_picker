@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'country.dart';
 import 'country_list_theme_data.dart';
 import 'country_list_view.dart';
-import 'package:flutter_screen_scaling/flutter_screen_scaling.dart';
 void showCountryListBottomSheet({
   required BuildContext context,
   required ValueChanged<Country> onSelect,
@@ -14,6 +13,7 @@ void showCountryListBottomSheet({
   CountryListThemeData? countryListTheme,
   String titleSearch = "",
   String hintSearch = "",
+  required TextStyle textStyleTitle,
 }) {
   showModalBottomSheet(
     context: context,
@@ -27,7 +27,8 @@ void showCountryListBottomSheet({
       showPhoneCode,
       countryListTheme,
         titleSearch,
-        hintSearch
+        hintSearch,
+      textStyleTitle
     ),
   ).whenComplete(() {
     if (onClosed != null) onClosed();
@@ -43,6 +44,7 @@ Widget _builder(
   CountryListThemeData? countryListTheme,
     String titleSearch,
     String hintSearch ,
+    TextStyle textStyleTitle,
 ) {
   final statusBarHeight = MediaQuery.of(context).padding.top;
 
@@ -67,7 +69,7 @@ Widget _builder(
       children: [
         Container(
           margin: EdgeInsets.only(top: 40),
-          child: Text(titleSearch, style: TextStyle(fontSize: ScreenScale.convertFontSize(30), color: Color(0xff4B5574), fontWeight: FontWeight.w700,),),
+          child: Text(titleSearch, style: textStyleTitle),
         ),
         Container(
           height: ScreenScale.convertHeight(700),
