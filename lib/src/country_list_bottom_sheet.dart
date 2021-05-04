@@ -72,7 +72,7 @@ Widget _builder(
           child: Text(titleSearch, style: textStyleTitle),
         ),
         Container(
-          height: ScreenScale.convertHeight(700),
+          height: 700,
           child: CountryListView(
             onSelect: onSelect,
             exclude: exclude,
