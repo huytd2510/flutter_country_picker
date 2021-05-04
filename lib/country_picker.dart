@@ -40,7 +40,7 @@ void showCountryPicker({
   CountryListThemeData? countryListTheme,
   String titleSearch = "",
   String hintSearch = "Search",
-  TextStyle textStyleTile,
+  required TextStyle textStyleTile,
 }) {
   assert(exclude == null || countryFilter == null,
       'Cannot provide both exclude and countryFilter');
