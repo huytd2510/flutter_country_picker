@@ -14,6 +14,7 @@ void showCountryListBottomSheet({
   String titleSearch = "",
   String hintSearch = "",
   required TextStyle textStyleTitle,
+  required double height,
 }) {
   showModalBottomSheet(
     context: context,
@@ -28,7 +29,8 @@ void showCountryListBottomSheet({
       countryListTheme,
         titleSearch,
         hintSearch,
-      textStyleTitle
+      textStyleTitle,
+        height,
     ),
   ).whenComplete(() {
     if (onClosed != null) onClosed();
@@ -45,6 +47,7 @@ Widget _builder(
     String titleSearch,
     String hintSearch ,
     TextStyle textStyleTitle,
+    double height
 ) {
   final statusBarHeight = MediaQuery.of(context).padding.top;
 
@@ -64,6 +67,7 @@ Widget _builder(
       color: _backgroundColor,
       borderRadius: const BorderRadius.all(Radius.circular(10.0),),
     ),
+      height: height * 1.2,
     child:
     Column(
       children: [
@@ -72,7 +76,7 @@ Widget _builder(
           child: Text(titleSearch, style: textStyleTitle),
         ),
         Container(
-          height: 700,
+          height: height,
           child: CountryListView(
             onSelect: onSelect,
             exclude: exclude,

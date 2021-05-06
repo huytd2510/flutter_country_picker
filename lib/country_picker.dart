@@ -41,6 +41,7 @@ void showCountryPicker({
   String titleSearch = "",
   String hintSearch = "Search",
   required TextStyle textStyleTile,
+  required double height,
 }) {
   assert(exclude == null || countryFilter == null,
       'Cannot provide both exclude and countryFilter');
@@ -54,6 +55,7 @@ void showCountryPicker({
     countryListTheme: countryListTheme,
     titleSearch: titleSearch,
     hintSearch: hintSearch,
-    textStyleTitle: textStyleTile
+    textStyleTitle: textStyleTile,
+      height: height
   );
 }
